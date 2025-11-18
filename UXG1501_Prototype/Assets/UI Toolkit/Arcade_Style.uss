@@ -1,5 +1,6 @@
 :root {
     background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/bg.png?fileID=2800000&guid=68b0284458c554c4d95527db784a3406&type=3#bg");
+    overflow: hidden;
 }
 
 .locale {
@@ -119,6 +120,53 @@
     color: rgb(224, 224, 224);
     -unity-text-align: middle-center;
     width: 10%;
+}
+
+.fighter-image-left {
+    flex-grow: 1;
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/buttons/fighter_left.png?fileID=2800000&guid=bbab67516a08d154f92ee02b0cfd5e62&type=3#fighter_left");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    transition-property: -unity-background-image-tint-color;
+    transition-duration: 0.3s;
+    transition-delay: 0.1s;
+}
+
+.fighter-image-right {
+    flex-grow: 1;
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/buttons/fighter_right-disabled.png?fileID=2800000&guid=dc41ab51a40cff44dade4be914335b88&type=3#fighter_right-disabled");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    transition-property: -unity-background-image-tint-color;
+    transition-duration: 0.3s;
+    transition-delay: 0.1s;
+}
+
+.fighter-image-disabled {
+    -unity-background-image-tint-color: rgb(82, 82, 82);
+}
+
+.fighter-left {
+    flex-grow: 1;
+    margin-right: 5%;
+    height: 100%;
+    width: 100%;
+    transition-property: width, height;
+    transition-duration: 0.3s, 0.3s;
+    transition-delay: 0.1s, 0.1s;
+}
+
+.fighter-right {
+    flex-grow: 1;
+    height: 100%;
+    margin-left: 5%;
+    width: 100%;
+    transition-property: width, height;
+    transition-duration: 0.3s, 0.3s;
+    transition-delay: 0.1s, 0.1s;
+}
+
+.fighter-disabled {
+    width: 80%;
+    height: 80%;
 }
 
 .transparent {

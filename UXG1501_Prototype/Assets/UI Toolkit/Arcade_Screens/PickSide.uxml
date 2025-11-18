@@ -3,7 +3,15 @@
     <ui:VisualElement name="GroupA" class="misc-groupa" />
     <ui:VisualElement name="TemplateContainer" class="container-template-main">
         <ui:Label text="15" name="label_countdown" class="label-countdown" />
-        <ui:VisualElement name="TemplateContent" style="flex-grow: 1; width: 100%; height: 100%;" />
+        <ui:VisualElement name="TemplateContent" style="flex-grow: 1; width: 100%; height: 100%; justify-content: center; align-items: center; flex-direction: row; padding-right: 5%; padding-left: 5%;">
+            <ui:VisualElement name="image-base-left" class="fighter-left">
+                <ui:VisualElement name="image-left" class="fighter-image-left" />
+            </ui:VisualElement>
+            <ui:VisualElement name="element_arrow" style="flex-grow: 0; height: 40px; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/misc/carousellArrow.png?fileID=2800000&amp;guid=63736721f8fb6c445a191a89c40403cf&amp;type=3#carousellArrow&quot;); background-size: 100% 100%; flex-shrink: 1; width: 40px;" />
+            <ui:VisualElement name="image-base-right" class="fighter-right fighter-disabled">
+                <ui:VisualElement name="image-right" class="fighter-image-right fighter-image-disabled" />
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement name="Footer" class="footer" style="height: 11%;">
             <ui:VisualElement name="Controls" class="footer-controls">
                 <ui:VisualElement name="ControlContainer" class="footer-controls-container" style="align-content: center; align-self: center; flex-grow: 0; width: 67%;">

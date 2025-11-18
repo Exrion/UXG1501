@@ -1,5 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Arcade_Style.uss?fileID=7433441132597879392&amp;guid=3bcfbad580fb74e4e950b14be37bdb69&amp;type=3#Arcade_Style" />
     <ui:VisualElement name="Screen_Start" class="screen-overlay" style="display: flex;" />
-    <ui:VisualElement name="Container" style="flex-grow: 1; width: 100%; height: 0%;" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; width: 100%; height: 100%;" />
 </ui:UXML>

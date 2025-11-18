@@ -3,7 +3,9 @@
     <ui:VisualElement name="GroupA" class="misc-groupa" />
     <ui:VisualElement name="TemplateContainer" class="container-template-main">
         <ui:Label text="15" name="label_countdown" class="label-countdown" />
-        <ui:VisualElement name="TemplateContent" style="flex-grow: 1; width: 100%; height: 100%;" />
+        <ui:VisualElement name="TemplateContent" style="flex-grow: 1; width: 100%; height: 100%;">
+            <ui:VisualElement name="Temp" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/mode-select-temp.png?fileID=2800000&amp;guid=bfd49f335c3345c43aac45724f7d3fa6&amp;type=3#mode-select-temp&quot;); -unity-background-scale-mode: stretch-to-fill;" />
+        </ui:VisualElement>
         <ui:VisualElement name="Footer" class="footer">
             <ui:VisualElement name="SubtitleBar" class="footer-subtitle" />
             <ui:VisualElement name="DescriptionBar" class="footer-description" />

@@ -13,7 +13,8 @@ public enum INPUT_TYPE
     UP = 0x03,
     DOWN = 0x04,
     LEFT = 0x05,
-    RIGHT = 0x06
+    RIGHT = 0x06,
+    SKIP = 0x07
 }
 
 public class Arcade_Script : MonoBehaviour
@@ -24,8 +25,9 @@ public class Arcade_Script : MonoBehaviour
         START = 0x01,
         MODE_SELECT = 0x02,
         PICK_SIDE = 0x03,
-        TUTORIAL = 0x04,
-        CHARACTER_SELECT = 0x05
+        TUTORIAL1 = 0x04,
+        TUTORIAL2 = 0x05,
+        CHARACTER_SELECT = 0x06
     }
 
     UIDocument m_UIDocument;
@@ -45,6 +47,12 @@ public class Arcade_Script : MonoBehaviour
     Dictionary<STATE, TemplateContainer> m_TemplateContainers = new();
     STATE m_State = STATE.START;
 
+    // Mode Select
+    // [HERE]
+
+    // Pick Side
+    bool m_PickSide_Left = true;
+
     void Start()
     {
         m_UIDocument = GetComponent<UIDocument>();
@@ -62,8 +70,6 @@ public class Arcade_Script : MonoBehaviour
 
     public void HandleInput(INPUT_TYPE input)
     {
-        Debug.Log(input.ToString());
-
         switch (m_State)
         {
             case STATE.NONE:
@@ -84,18 +90,29 @@ public class Arcade_Script : MonoBehaviour
                 break;
 
             case STATE.PICK_SIDE:
-                // @TODO: TEMP SOLUTION
+                Update_PickSide();
+                if (input == INPUT_TYPE.LEFT)
+                {
+                    m_PickSide_Left = true;
+                    Update_PickSide();
+                }
+                else if (input == INPUT_TYPE.RIGHT)
+                {
+                    m_PickSide_Left = false;
+                    Update_PickSide();
+                }
                 if (input == INPUT_TYPE.CONFIRM)
                     ChangeScreenState(++m_State);
                 else if (input == INPUT_TYPE.BACK)
                     ChangeScreenState(--m_State);
                 break;
-            case STATE.TUTORIAL:
-                // @TODO: TEMP SOLUTION
-                if (input == INPUT_TYPE.CONFIRM)
+            case STATE.TUTORIAL1:
+                if (input == INPUT_TYPE.SKIP)
                     ChangeScreenState(++m_State);
-                else if (input == INPUT_TYPE.BACK)
-                    ChangeScreenState(--m_State);
+                break;
+            case STATE.TUTORIAL2:
+                if (input == INPUT_TYPE.SKIP)
+                    ChangeScreenState(++m_State);
                 break;
             case STATE.CHARACTER_SELECT:
                 if (input == INPUT_TYPE.CONFIRM)
@@ -114,11 +131,32 @@ public class Arcade_Script : MonoBehaviour
         }
     }
 
+    void Update_PickSide()
+    {
+        if (m_PickSide_Left)
+        {
+            m_Container.Q("image-left").RemoveFromClassList("fighter-image-disabled");
+            m_Container.Q("image-right").AddToClassList("fighter-image-disabled");
+            m_Container.Q("image-base-left").RemoveFromClassList("fighter-disabled");
+            m_Container.Q("image-base-right").AddToClassList("fighter-disabled");
+        }
+        else
+        {
+            m_Container.Q("image-left").AddToClassList("fighter-image-disabled");
+            m_Container.Q("image-right").RemoveFromClassList("fighter-image-disabled");
+            m_Container.Q("image-base-left").AddToClassList("fighter-disabled");
+            m_Container.Q("image-base-right").RemoveFromClassList("fighter-disabled");
+        }
+    }
+
     public void HandleCardSwipe()
     {
-        m_StartOverlay.AddToClassList("transparent");
-        m_State = STATE.MODE_SELECT; 
-        ChangeScreenState(m_State);
+        if (m_State == STATE.START)
+        {
+            m_StartOverlay.AddToClassList("transparent");
+            m_State = STATE.MODE_SELECT;
+            ChangeScreenState(m_State);
+        }
     }
 
     public void HandleLocaleChange()
