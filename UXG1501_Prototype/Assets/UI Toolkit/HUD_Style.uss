@@ -1,0 +1,29 @@
+VisualElement {
+}
+
+.ActionItem {
+    flex-grow: 1;
+    left: initial;
+    flex-direction: row;
+    height: auto;
+    align-items: center;
+    -unity-font-definition: url("project://database/Assets/com.DigiPen/lib/fonts/CuteNotebookPersonalUse-7OAEV.ttf?fileID=12800000&guid=6a259078ba99e74428f0121c0e0f7e6e&type=3#CuteNotebookPersonalUse-7OAEV");
+}
+
+.ActionItem_Image {
+    flex-grow: 1;
+    width: 30px;
+    height: 30px;
+    top: auto;
+    bottom: auto;
+    -unity-font-definition: url("project://database/Assets/com.DigiPen/lib/fonts/CuteNotebookPersonalUse-7OAEV.ttf?fileID=12800000&guid=6a259078ba99e74428f0121c0e0f7e6e&type=3#CuteNotebookPersonalUse-7OAEV");
+}
+
+.ActionItem_Label {
+    flex-grow: 1;
+    -unity-font-definition: url("project://database/Assets/com.DigiPen/lib/fonts/CuteNotebookPersonalUse-7OAEV.ttf?fileID=12800000&guid=6a259078ba99e74428f0121c0e0f7e6e&type=3#CuteNotebookPersonalUse-7OAEV");
+    -unity-text-align: upper-left;
+    font-size: 18px;
+    letter-spacing: 8px;
+    color: rgb(255, 255, 255);
+}
