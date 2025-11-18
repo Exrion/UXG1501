@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
@@ -30,6 +31,9 @@ public class Arcade_Script : MonoBehaviour
     UIDocument m_UIDocument;
     VisualElement m_RootVisualElement;
     VisualElement m_Container;
+
+    bool m_LocaleEnglish = true;
+    public Locale_SO m_Locales;
 
     VisualElement m_StartOverlay;
 
@@ -117,6 +121,12 @@ public class Arcade_Script : MonoBehaviour
         ChangeScreenState(m_State);
     }
 
+    public void HandleLocaleChange()
+    {
+        m_LocaleEnglish = !m_LocaleEnglish;
+        UpdateLocale();
+    }
+
     void ChangeScreenState(STATE state)
     {
         m_Container.Clear();
@@ -125,13 +135,27 @@ public class Arcade_Script : MonoBehaviour
 
         if (m_TemplateContainers.TryGetValue(state, out TemplateContainer template))
         {
+            template.style.width = new StyleLength(new Length(100, LengthUnit.Percent));
+            template.style.height = new StyleLength(new Length(100, LengthUnit.Percent));
             m_Container.Add(template);
+            UpdateLocale();
         }
         else
             Logger.Log("Could not find STATE matching type \"" + state.ToString() + "\"!",
                     Logger.SEVERITY_LEVEL.ERROR,
                     Logger.LOGGER_OPTIONS.VERBOSE,
                     MethodBase.GetCurrentMethod());
+    }
+
+    void UpdateLocale()
+    {
+        List<VisualElement> localeLabels = m_Container.Query(className: "locale").ToList();
+        for (int i = 0; i < localeLabels.Count; i++)
+        {
+            string localeName = localeLabels[i].name;
+            Label label = (Label)localeLabels[i];
+            label.text = Locale_SO.GetValue(m_LocaleEnglish ? m_Locales.locale_en : m_Locales.locale_jp, localeName);
+        }
     }
 
     void InitTemplateContainers()

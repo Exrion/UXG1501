@@ -1,3 +1,28 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Label text="Mode Select" style="font-size: 64px; color: rgb(226, 226, 226);" />
+    <Style src="project://database/Assets/UI%20Toolkit/Arcade_Style.uss?fileID=7433441132597879392&amp;guid=3bcfbad580fb74e4e950b14be37bdb69&amp;type=3#Arcade_Style" />
+    <ui:VisualElement name="GroupA" class="misc-groupa" />
+    <ui:VisualElement name="TemplateContainer" class="container-template-main">
+        <ui:Label text="15" name="label_countdown" class="label-countdown" />
+        <ui:VisualElement name="TemplateContent" style="flex-grow: 1; width: 100%; height: 100%;" />
+        <ui:VisualElement name="Footer" class="footer">
+            <ui:VisualElement name="SubtitleBar" class="footer-subtitle" />
+            <ui:VisualElement name="DescriptionBar" class="footer-description" />
+            <ui:VisualElement name="Controls" class="footer-controls" style="height: 20px;">
+                <ui:VisualElement name="ControlContainer" class="footer-controls-container" style="align-content: center; align-self: center; flex-grow: 0; width: 67%;">
+                    <ui:VisualElement name="Choice" class="control-base">
+                        <ui:VisualElement name="Icon" class="control-icon" style="background-size: 15px 20px;" />
+                        <ui:Label text="choice" name="locale_choice" class="control-label locale" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Confirm" class="control-base">
+                        <ui:VisualElement name="Icon" class="control-icon" style="background-size: 20px 20px; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/control_Icons/decisionIcon.png?fileID=2800000&amp;guid=43d92be37368a3e4998cd8a280a6a077&amp;type=3#decisionIcon&quot;);" />
+                        <ui:Label text="confirm" name="locale_confirm" class="control-label locale" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Back" class="control-base" style="margin-right: 0%;">
+                        <ui:VisualElement name="Icon" class="control-icon" style="background-size: 20px 20px; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/control_Icons/backIcon.png?fileID=2800000&amp;guid=65887be5298a5f44bb523388ada94cd3&amp;type=3#backIcon&quot;); width: 30%;" />
+                        <ui:Label text="back" name="locale_back" class="control-label locale" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
