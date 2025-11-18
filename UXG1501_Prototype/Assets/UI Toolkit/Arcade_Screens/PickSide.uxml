@@ -7,7 +7,9 @@
             <ui:VisualElement name="image-base-left" class="fighter-left">
                 <ui:VisualElement name="image-left" class="fighter-image-left" />
             </ui:VisualElement>
-            <ui:VisualElement name="element_arrow" style="flex-grow: 0; height: 40px; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/misc/carousellArrow.png?fileID=2800000&amp;guid=63736721f8fb6c445a191a89c40403cf&amp;type=3#carousellArrow&quot;); background-size: 100% 100%; flex-shrink: 1; width: 40px;" />
+            <ui:VisualElement name="Arrow" style="flex-grow: 1; justify-content: center; align-items: center; height: 100%; width: 5%;">
+                <ui:VisualElement name="element-arrow" class="element-arrow" />
+            </ui:VisualElement>
             <ui:VisualElement name="image-base-right" class="fighter-right fighter-disabled">
                 <ui:VisualElement name="image-right" class="fighter-image-right fighter-image-disabled" />
             </ui:VisualElement>

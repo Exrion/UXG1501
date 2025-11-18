@@ -3,12 +3,66 @@
     <ui:VisualElement name="GroupA" class="misc-groupa" />
     <ui:VisualElement name="TemplateContainer" class="container-template-main">
         <ui:Label text="15" name="label_countdown" class="label-countdown" />
-        <ui:VisualElement name="TemplateContent" style="flex-grow: 1; width: 100%; height: 100%;">
-            <ui:VisualElement name="Temp" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/mode-select-temp.png?fileID=2800000&amp;guid=bfd49f335c3345c43aac45724f7d3fa6&amp;type=3#mode-select-temp&quot;); -unity-background-scale-mode: stretch-to-fill;" />
+        <ui:VisualElement name="TemplateContent" style="flex-grow: 1; width: 100%; height: 100%; justify-content: center; flex-direction: row;">
+            <ui:VisualElement name="Temp" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/mode-select-temp.png?fileID=2800000&amp;guid=bfd49f335c3345c43aac45724f7d3fa6&amp;type=3#mode-select-temp&quot;); -unity-background-scale-mode: stretch-to-fill; display: none;" />
+            <ui:VisualElement name="ArrowLeft" style="flex-grow: 1; height: 100%; width: 4%; justify-content: center; align-items: center;">
+                <ui:VisualElement name="arrow-left" style="flex-grow: 0; width: 30px; height: 64px; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/misc/carousellArrow.png?fileID=2800000&amp;guid=63736721f8fb6c445a191a89c40403cf&amp;type=3#carousellArrow&quot;); -unity-slice-scale: 1px; background-size: 100% 100%; scale: -1 1;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Content" style="flex-grow: 1; width: 100%; height: 100%; flex-direction: row; align-items: flex-end; justify-content: space-between; padding-right: 1%; padding-left: 1%; overflow: hidden; flex-basis: auto;">
+                <ui:VisualElement name="mode-pad-front" class="mode-select-base" style="opacity: 0;">
+                    <ui:VisualElement name="Image" class="mode-select-image-base">
+                        <ui:VisualElement name="mode-image-coop" class="mode-select-image-local" style="flex-grow: 1;" />
+                    </ui:VisualElement>
+                    <ui:Label text="local" name="locale_coop" class="mode-select-text locale" />
+                </ui:VisualElement>
+                <ui:VisualElement name="mode-coop" class="mode-select-base">
+                    <ui:VisualElement name="Image" class="mode-select-image-base">
+                        <ui:VisualElement name="mode-image-coop" class="mode-select-image-local" style="flex-grow: 1;" />
+                    </ui:VisualElement>
+                    <ui:Label text="local" name="locale_coop" class="mode-select-text locale" />
+                </ui:VisualElement>
+                <ui:VisualElement name="mode-online" class="mode-select-base mode-select-base-disabled">
+                    <ui:VisualElement name="Image" class="mode-select-image-base" style="flex-grow: 1;">
+                        <ui:VisualElement name="mode-image-online" class="mode-select-image-online mode-select-image-online-disabled" style="-unity-background-scale-mode: scale-to-fit;" />
+                    </ui:VisualElement>
+                    <ui:Label text="online" name="locale_online" emoji-fallback-support="true" class="mode-select-text locale mode-select-text-disabled" />
+                </ui:VisualElement>
+                <ui:VisualElement name="mode-friend" class="mode-select-base mode-select-base-disabled" style="display: none;">
+                    <ui:VisualElement name="Image" class="mode-select-image-base" style="flex-grow: 1;">
+                        <ui:VisualElement name="mode-image-friend" class="mode-select-image-friend mode-select-image-friend-disabled" style="-unity-background-scale-mode: scale-to-fit;" />
+                    </ui:VisualElement>
+                    <ui:Label text="friend" name="locale_friend" class="mode-select-text locale mode-select-text-disabled" />
+                </ui:VisualElement>
+                <ui:VisualElement name="mode-ranked" class="mode-select-base mode-select-base-disabled" style="display: none;">
+                    <ui:VisualElement name="Image" class="mode-select-image-base" style="flex-grow: 1;">
+                        <ui:VisualElement name="mode-image-ranked" class="mode-select-image-ranked mode-select-image-ranked-disabled" style="-unity-background-scale-mode: scale-to-fit;" />
+                    </ui:VisualElement>
+                    <ui:Label text="ranked" name="locale_ranked" class="mode-select-text locale mode-select-text-disabled" />
+                </ui:VisualElement>
+                <ui:VisualElement name="mode-practise" class="mode-select-base mode-select-base-disabled" style="display: none;">
+                    <ui:VisualElement name="Image" class="mode-select-image-base" style="flex-grow: 1;">
+                        <ui:VisualElement name="mode-image-practise" class="mode-select-image-practise mode-select-image-practise-disabled" style="-unity-background-scale-mode: scale-to-fit;" />
+                    </ui:VisualElement>
+                    <ui:Label text="practise" name="locale_practise" class="mode-select-text locale mode-select-text-disabled" />
+                </ui:VisualElement>
+                <ui:VisualElement name="mode-pad-back" class="mode-select-base" style="opacity: 0; display: none;">
+                    <ui:VisualElement name="Image" class="mode-select-image-base">
+                        <ui:VisualElement name="mode-image-coop" class="mode-select-image-local" style="flex-grow: 1;" />
+                    </ui:VisualElement>
+                    <ui:Label text="local" name="locale_coop" class="mode-select-text locale" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ArrowRight" style="flex-grow: 1; width: 4%; height: 100%; justify-content: center; align-items: center;">
+                <ui:VisualElement name="arrow-right" style="flex-grow: 0; width: 30px; height: 64px; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/misc/carousellArrow.png?fileID=2800000&amp;guid=63736721f8fb6c445a191a89c40403cf&amp;type=3#carousellArrow&quot;);" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Footer" class="footer">
-            <ui:VisualElement name="SubtitleBar" class="footer-subtitle" />
-            <ui:VisualElement name="DescriptionBar" class="footer-description" />
+            <ui:VisualElement name="SubtitleBar" class="footer-subtitle">
+                <ui:Label text="subtitle" name="locale_subtitle" class="locale" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 1; height: 22px; position: absolute; top: 10px; left: 39px; color: rgb(224, 224, 224); -unity-font-definition: url(&quot;project://database/Assets/com.DigiPen/lib/fonts/BAHNSCHRIFT.TTF?fileID=12800000&amp;guid=6e699dfe084aef64d9fdb3dc61367a3b&amp;type=3#BAHNSCHRIFT&quot;); -unity-font-style: normal; font-size: 16px; -unity-text-align: middle-left; width: 1256px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="DescriptionBar" class="footer-description">
+                <ui:Label text="description" name="locale_description" class="locale" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 1; height: 22px; position: absolute; top: 10px; left: 39px; color: rgb(224, 224, 224); -unity-font-definition: url(&quot;project://database/Assets/com.DigiPen/lib/fonts/BAHNSCHRIFT.TTF?fileID=12800000&amp;guid=6e699dfe084aef64d9fdb3dc61367a3b&amp;type=3#BAHNSCHRIFT&quot;); -unity-font-style: normal; font-size: 16px; -unity-text-align: middle-left; width: 1256px;" />
+            </ui:VisualElement>
             <ui:VisualElement name="Controls" class="footer-controls" style="height: 20px;">
                 <ui:VisualElement name="ControlContainer" class="footer-controls-container" style="align-content: center; align-self: center; flex-grow: 0; width: 67%;">
                     <ui:VisualElement name="Choice" class="control-base">

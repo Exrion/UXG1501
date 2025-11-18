@@ -169,6 +169,157 @@
     height: 80%;
 }
 
+.element-arrow {
+    flex-grow: 0;
+    height: 64px;
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/misc/carousellArrow.png?fileID=2800000&guid=63736721f8fb6c445a191a89c40403cf&type=3#carousellArrow");
+    background-size: 100% 100%;
+    flex-shrink: 1;
+    width: 30px;
+    transition-property: scale;
+    transition-duration: 0.3s;
+    transition-delay: 0.1s;
+    scale: 1 1;
+}
+
+.element-arrow-flip {
+    scale: -1 1;
+}
+
+.mode-select-base {
+    flex-grow: 0;
+    height: 85%;
+    width: 30%;
+    justify-content: flex-start;
+    transition-property: scale, opacity;
+    transition-duration: 0.3s, 0.3s;
+    transition-delay: 0.1s, 0.1s;
+}
+
+.mode-select-base-disabled {
+    opacity: 0.85;
+    scale: 0.75 0.75 0.75;
+}
+
+.mode-select-text {
+    font-size: 52px;
+    color: rgb(224, 224, 224);
+    -unity-font-definition: url("project://database/Assets/com.DigiPen/lib/fonts/BAHNSCHRIFT.TTF?fileID=12800000&guid=6e699dfe084aef64d9fdb3dc61367a3b&type=3#BAHNSCHRIFT");
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    transition-property: color;
+    transition-duration: 0.3s;
+    transition-delay: 0.1s;
+    width: 100%;
+    white-space: normal;
+}
+
+.mode-select-text-disabled {
+    color: rgba(142, 142, 142, 0.47);
+}
+
+.mode-select-image-local {
+    flex-grow: 1;
+    height: 80%;
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/carousell_icons/local.png?fileID=2800000&guid=06b6b8db93ea4bf4ba715543367c7f2a&type=3#local");
+    transition-property: opacity, background-image;
+    transition-duration: 0.3s, 0.3s;
+    transition-delay: 0.1s, 0.1s;
+    background-size: 100% 100%;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.mode-select-image-online {
+    flex-grow: 1;
+    height: 100%;
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/carousell_icons/online.png?fileID=2800000&guid=f4123964e98f9be4385eb9f7eb7a721c&type=3#online");
+    transition-property: opacity, background-image;
+    transition-duration: 0.3s, 0.3s;
+    transition-delay: 0.1s, 0.1s;
+    background-size: 100% 100%;
+    -unity-background-scale-mode: stretch-to-fill;
+    width: 100%;
+}
+
+.mode-select-image-friend {
+    flex-grow: 0;
+    height: 100%;
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/carousell_icons/pvp.png?fileID=2800000&guid=5afcfc78cc6ad2a4ab8ca8ec3d8c8478&type=3#pvp");
+    transition-property: opacity, background-image;
+    transition-duration: 0.3s, 0.3s;
+    transition-delay: 0.1s, 0.1s;
+    background-size: 100% 100%;
+    -unity-background-scale-mode: stretch-to-fill;
+    width: 100%;
+    align-items: stretch;
+}
+
+.mode-select-image-ranked {
+    flex-grow: 1;
+    height: 100%;
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/carousell_icons/ranked.png?fileID=2800000&guid=fc51724e773a37745b809ab11f3d61ea&type=3#ranked");
+    transition-property: opacity, background-image;
+    transition-duration: 0.3s, 0.3s;
+    transition-delay: 0.1s, 0.1s;
+    background-size: 100% 100%;
+    -unity-background-scale-mode: stretch-to-fill;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    scale: 0.7 0.7 0.7;
+}
+
+.mode-select-image-practise {
+    flex-grow: 1;
+    height: 100%;
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/carousell_icons/practise.png?fileID=2800000&guid=6e1b75f0fe63bc14e9a0ff06ff2d712d&type=3#practise");
+    transition-property: opacity, background-image;
+    transition-duration: 0.3s, 0.3s;
+    transition-delay: 0.1s, 0.1s;
+    background-size: 100% 100%;
+    -unity-background-scale-mode: stretch-to-fill;
+    width: 100%;
+    scale: 0.75 0.6 0.75;
+}
+
+.mode-select-image-base {
+    -unity-background-scale-mode: scale-to-fit;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.mode-select-image-local-disabled {
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/carousell_icons/local-disabled.png?fileID=2800000&guid=38a65146294c6f34881b7a8b53d4ce23&type=3#local-disabled");
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.47);
+    background-size: cover;
+}
+
+.mode-select-image-online-disabled {
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/carousell_icons/online-disabled.png?fileID=2800000&guid=32adcf011d9a65644a48f620ee8a4cf7&type=3#online-disabled");
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.47);
+    background-size: cover;
+}
+
+.mode-select-image-friend-disabled {
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/carousell_icons/pvp-disabled.png?fileID=2800000&guid=55094ecd8c4b39b4c8427a03c020a62b&type=3#pvp-disabled");
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.47);
+    background-size: cover;
+}
+
+.mode-select-image-ranked-disabled {
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/carousell_icons/ranked-disabled.png?fileID=2800000&guid=67bf0b1148a80ba468d91bb00264aff6&type=3#ranked-disabled");
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.47);
+    background-size: cover;
+}
+
+.mode-select-image-practise-disabled {
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/carousell_icons/practise-disabled.png?fileID=2800000&guid=ac535a238f6b634438e1b07c8a91f4ba&type=3#practise-disabled");
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.47);
+    background-size: cover;
+}
+
 .transparent {
     opacity: 0%;
 }

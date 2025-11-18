@@ -48,7 +48,7 @@ public class Arcade_Script : MonoBehaviour
     STATE m_State = STATE.START;
 
     // Mode Select
-    // [HERE]
+    int m_ModeSelect_Count = 0;
 
     // Pick Side
     bool m_PickSide_Left = true;
@@ -61,11 +61,6 @@ public class Arcade_Script : MonoBehaviour
         m_StartOverlay = m_RootVisualElement.Q("Screen_Start");
 
         InitTemplateContainers();
-    }
-
-    void Update()
-    {
-
     }
 
     public void HandleInput(INPUT_TYPE input)
@@ -82,25 +77,27 @@ public class Arcade_Script : MonoBehaviour
                 // Nothing
                 break;
             case STATE.MODE_SELECT:
-                // @TODO: TEMP SOLUTION
+                if (input == INPUT_TYPE.LEFT)
+                    m_ModeSelect_Count = m_ModeSelect_Count <= 0 ? 4 : m_ModeSelect_Count - 1;
+                else if (input == INPUT_TYPE.RIGHT)
+                    m_ModeSelect_Count = m_ModeSelect_Count >= 4 ? 0 : m_ModeSelect_Count + 1;
+
+                Update_ModeSelect();
+                UpdateLocale();
+
                 if (input == INPUT_TYPE.CONFIRM)
                     ChangeScreenState(++m_State);
-                else if (input == INPUT_TYPE.BACK)
-                    ChangeScreenState(--m_State);
                 break;
 
             case STATE.PICK_SIDE:
-                Update_PickSide();
                 if (input == INPUT_TYPE.LEFT)
-                {
                     m_PickSide_Left = true;
-                    Update_PickSide();
-                }
                 else if (input == INPUT_TYPE.RIGHT)
-                {
                     m_PickSide_Left = false;
-                    Update_PickSide();
-                }
+
+                Update_PickSide();
+                UpdateLocale();
+
                 if (input == INPUT_TYPE.CONFIRM)
                     ChangeScreenState(++m_State);
                 else if (input == INPUT_TYPE.BACK)
@@ -131,6 +128,168 @@ public class Arcade_Script : MonoBehaviour
         }
     }
 
+    void Update_ModeSelect()
+    {
+        switch (m_ModeSelect_Count)
+        {
+            case 0:
+                // Local
+                m_Container.Q("mode-coop").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-coop").RemoveFromClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-coop").RemoveFromClassList("mode-select-image-local-disabled");
+                m_Container.Q("locale_coop").RemoveFromClassList("mode-select-text-disabled");
+
+                // Online
+                m_Container.Q("mode-online").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-online").AddToClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-online").AddToClassList("mode-select-image-online-disabled");
+                m_Container.Q("locale_online").AddToClassList("mode-select-text-disabled");
+
+                // Friend
+                m_Container.Q("mode-friend").style.display = DisplayStyle.None;
+
+                // Ranked
+                m_Container.Q("mode-ranked").style.display = DisplayStyle.None;
+
+                // Practise
+                m_Container.Q("mode-practise").style.display = DisplayStyle.None;
+
+                // FrontPad
+                m_Container.Q("mode-pad-front").style.display = DisplayStyle.Flex;
+
+                // BackPad
+                m_Container.Q("mode-pad-back").style.display = DisplayStyle.None;
+                break;
+            case 1:
+                // Local
+                m_Container.Q("mode-coop").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-coop").AddToClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-coop").AddToClassList("mode-select-image-local-disabled");
+                m_Container.Q("locale_coop").AddToClassList("mode-select-text-disabled");
+
+                // Online
+                m_Container.Q("mode-online").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-online").RemoveFromClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-online").RemoveFromClassList("mode-select-image-online-disabled");
+                m_Container.Q("locale_online").RemoveFromClassList("mode-select-text-disabled");
+
+                // Friend
+                m_Container.Q("mode-friend").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-friend").AddToClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-friend").AddToClassList("mode-select-image-friend-disabled");
+                m_Container.Q("locale_friend").AddToClassList("mode-select-text-disabled");
+
+                // Ranked
+                m_Container.Q("mode-ranked").style.display = DisplayStyle.None;
+
+                // Practise
+                m_Container.Q("mode-practise").style.display = DisplayStyle.None;
+
+                // FrontPad
+                m_Container.Q("mode-pad-front").style.display = DisplayStyle.None;
+
+                // BackPad
+                m_Container.Q("mode-pad-back").style.display = DisplayStyle.None;
+                break;
+            case 2:
+                // Local
+                m_Container.Q("mode-coop").style.display = DisplayStyle.None;
+
+                // Online
+                m_Container.Q("mode-online").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-online").AddToClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-online").AddToClassList("mode-select-image-online-disabled");
+                m_Container.Q("locale_online").AddToClassList("mode-select-text-disabled");
+
+                // Friend
+                m_Container.Q("mode-friend").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-friend").RemoveFromClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-friend").RemoveFromClassList("mode-select-image-friend-disabled");
+                m_Container.Q("locale_friend").RemoveFromClassList("mode-select-text-disabled");
+
+                // Ranked
+                m_Container.Q("mode-ranked").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-ranked").AddToClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-ranked").AddToClassList("mode-select-image-ranked-disabled");
+                m_Container.Q("locale_ranked").AddToClassList("mode-select-text-disabled");
+
+                // Practise
+                m_Container.Q("mode-practise").style.display = DisplayStyle.None;
+
+                // FrontPad
+                m_Container.Q("mode-pad-front").style.display = DisplayStyle.None;
+
+                // BackPad
+                m_Container.Q("mode-pad-back").style.display = DisplayStyle.None;
+                break;
+            case 3:
+                // Local
+                m_Container.Q("mode-coop").style.display = DisplayStyle.None;
+
+                // Online
+                m_Container.Q("mode-online").style.display = DisplayStyle.None;
+
+                // Friend
+                m_Container.Q("mode-friend").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-friend").AddToClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-friend").AddToClassList("mode-select-image-friend-disabled");
+                m_Container.Q("locale_friend").AddToClassList("mode-select-text-disabled");
+
+                // Ranked
+                m_Container.Q("mode-ranked").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-ranked").RemoveFromClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-ranked").RemoveFromClassList("mode-select-image-ranked-disabled");
+                m_Container.Q("locale_ranked").RemoveFromClassList("mode-select-text-disabled");
+
+                // Practise
+                m_Container.Q("mode-practise").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-practise").AddToClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-practise").AddToClassList("mode-select-image-practise-disabled");
+                m_Container.Q("locale_practise").AddToClassList("mode-select-text-disabled");
+
+                // FrontPad
+                m_Container.Q("mode-pad-front").style.display = DisplayStyle.None;
+
+                // BackPad
+                m_Container.Q("mode-pad-back").style.display = DisplayStyle.None;
+                break;
+            case 4:
+                // Local
+                m_Container.Q("mode-coop").style.display = DisplayStyle.None;
+
+                // Online
+                m_Container.Q("mode-online").style.display = DisplayStyle.None;
+
+                // Friend
+                m_Container.Q("mode-friend").style.display = DisplayStyle.None;
+
+                // Ranked
+                m_Container.Q("mode-ranked").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-ranked").AddToClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-ranked").AddToClassList("mode-select-image-ranked-disabled");
+                m_Container.Q("locale_ranked").AddToClassList("mode-select-text-disabled");
+
+                // Practise
+                m_Container.Q("mode-practise").style.display = DisplayStyle.Flex;
+                m_Container.Q("mode-practise").RemoveFromClassList("mode-select-base-disabled");
+                m_Container.Q("mode-image-practise").RemoveFromClassList("mode-select-image-practise-disabled");
+                m_Container.Q("locale_practise").RemoveFromClassList("mode-select-text-disabled");
+
+                // FrontPad
+                m_Container.Q("mode-pad-front").style.display = DisplayStyle.None;
+
+                // BackPad
+                m_Container.Q("mode-pad-back").style.display = DisplayStyle.Flex;
+                break;
+            default:
+                Logger.Log("Unknown Mode Select Achieved. We should never be here.",
+                    Logger.SEVERITY_LEVEL.WARNING,
+                    Logger.LOGGER_OPTIONS.VERBOSE,
+                    MethodBase.GetCurrentMethod());
+                break;
+        }
+    }
+
     void Update_PickSide()
     {
         if (m_PickSide_Left)
@@ -139,6 +298,7 @@ public class Arcade_Script : MonoBehaviour
             m_Container.Q("image-right").AddToClassList("fighter-image-disabled");
             m_Container.Q("image-base-left").RemoveFromClassList("fighter-disabled");
             m_Container.Q("image-base-right").AddToClassList("fighter-disabled");
+            m_Container.Q("element-arrow").RemoveFromClassList("element-arrow-flip");
         }
         else
         {
@@ -146,6 +306,7 @@ public class Arcade_Script : MonoBehaviour
             m_Container.Q("image-right").RemoveFromClassList("fighter-image-disabled");
             m_Container.Q("image-base-left").AddToClassList("fighter-disabled");
             m_Container.Q("image-base-right").RemoveFromClassList("fighter-disabled");
+            m_Container.Q("element-arrow").AddToClassList("element-arrow-flip");
         }
     }
 
@@ -192,7 +353,10 @@ public class Arcade_Script : MonoBehaviour
         {
             string localeName = localeLabels[i].name;
             Label label = (Label)localeLabels[i];
-            label.text = Locale_SO.GetValue(m_LocaleEnglish ? m_Locales.locale_en : m_Locales.locale_jp, localeName);
+            if (localeName == "locale_subtitle")
+                label.text = Locale_SO.GetValue(m_LocaleEnglish ? m_Locales.locale_en : m_Locales.locale_jp, localeName + m_ModeSelect_Count);
+            else
+                label.text = Locale_SO.GetValue(m_LocaleEnglish ? m_Locales.locale_en : m_Locales.locale_jp, localeName);
         }
     }
 
