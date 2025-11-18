@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 42797706}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.49, y: 13.25, z: -4.84}
+  m_LocalPosition: {x: -1.7, y: 13.25, z: -4.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -562,10 +562,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3196788157933106974, guid: 8e2f7de0ff911bc4db616bbe2de5c1f9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e2f7de0ff911bc4db616bbe2de5c1f9, type: 3}
 --- !u!4 &456571524 stripped
 Transform:
@@ -624,7 +621,7 @@ Transform:
   m_GameObject: {fileID: 470312053}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.08, y: 13.25, z: -4.84}
+  m_LocalPosition: {x: 1, y: 13.25, z: -4.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1057,12 +1054,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e4a7518440b21479fc7ef2bc8caa0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arcade_Script
-  m_VisualTreeAssetPaths:
-  - Assets/UI Toolkit/Arcade_Screens/ModeSelect.uxml
-  - Assets/UI Toolkit/Arcade_Screens/PickSide.uxml
-  - Assets/UI Toolkit/Arcade_Screens/Tutorial.uxml
-  - Assets/UI Toolkit/Arcade_Screens/CharacterSelect.uxml
-  m_ScreenStateOrder: 02000000030000000400000005000000
+  m_VisualTreeAssetPaths: []
+  m_ScreenStateOrder: 
 --- !u!1 &1402050309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,10 +1341,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3196788157933106974, guid: 8e2f7de0ff911bc4db616bbe2de5c1f9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e2f7de0ff911bc4db616bbe2de5c1f9, type: 3}
 --- !u!4 &2088049423 stripped
 Transform:
@@ -1435,10 +1425,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3196788157933106974, guid: 8e2f7de0ff911bc4db616bbe2de5c1f9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e2f7de0ff911bc4db616bbe2de5c1f9, type: 3}
 --- !u!4 &8544486460057456214 stripped
 Transform:

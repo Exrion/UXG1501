@@ -1,0 +1,21 @@
+:root {
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/bg.png?fileID=2800000&guid=68b0284458c554c4d95527db784a3406&type=3#bg");
+}
+
+.screen-overlay {
+    flex-grow: 1;
+    position: absolute;
+    left: initial;
+    top: initial;
+    width: 100%;
+    height: 100%;
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/start.jpg?fileID=2800000&guid=1e4e5a82af3a0f744bb4a297211fcda7&type=3#start");
+    transition-property: opacity;
+    transition-duration: 0.2s;
+    transition-delay: 0.1s;
+    opacity: 1;
+}
+
+.transparent {
+    opacity: 0%;
+}

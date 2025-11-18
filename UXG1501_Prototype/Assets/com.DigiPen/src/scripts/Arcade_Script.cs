@@ -1,0 +1,153 @@
+using System.Collections.Generic;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public enum INPUT_TYPE
+{
+    ALL = 0x00,
+    CONFIRM = 0x01,
+    BACK = 0x02,
+    UP = 0x03,
+    DOWN = 0x04,
+    LEFT = 0x05,
+    RIGHT = 0x06
+}
+
+public class Arcade_Script : MonoBehaviour
+{
+    enum STATE
+    {
+        NONE = 0x00,
+        START = 0x01,
+        MODE_SELECT = 0x02,
+        PICK_SIDE = 0x03,
+        TUTORIAL = 0x04,
+        CHARACTER_SELECT = 0x05
+    }
+
+    UIDocument m_UIDocument;
+    VisualElement m_RootVisualElement;
+    VisualElement m_Container;
+
+    VisualElement m_StartOverlay;
+
+    [SerializeField]
+    List<string> m_VisualTreeAssetPaths = new();
+    [SerializeField]
+    List<STATE> m_ScreenStateOrder = new List<STATE>();
+
+    Dictionary<STATE, TemplateContainer> m_TemplateContainers = new();
+    STATE m_State = STATE.START;
+
+    void Start()
+    {
+        m_UIDocument = GetComponent<UIDocument>();
+        m_RootVisualElement = m_UIDocument.rootVisualElement;
+        m_Container = m_RootVisualElement.Q("Container");
+        m_StartOverlay = m_RootVisualElement.Q("Screen_Start");
+
+        InitTemplateContainers();
+    }
+
+    void Update()
+    {
+
+    }
+
+    public void HandleInput(INPUT_TYPE input)
+    {
+        Debug.Log(input.ToString());
+
+        switch (m_State)
+        {
+            case STATE.NONE:
+                Logger.Log("None State Achieved. Issue is likely with your ScreenStateOrder.",
+                    Logger.SEVERITY_LEVEL.WARNING,
+                    Logger.LOGGER_OPTIONS.VERBOSE,
+                    MethodBase.GetCurrentMethod());
+                break;
+            case STATE.START:
+                // Nothing
+                break;
+            case STATE.MODE_SELECT:
+                // @TODO: TEMP SOLUTION
+                if (input == INPUT_TYPE.CONFIRM)
+                    ChangeScreenState(++m_State);
+                else if (input == INPUT_TYPE.BACK)
+                    ChangeScreenState(--m_State);
+                break;
+
+            case STATE.PICK_SIDE:
+                // @TODO: TEMP SOLUTION
+                if (input == INPUT_TYPE.CONFIRM)
+                    ChangeScreenState(++m_State);
+                else if (input == INPUT_TYPE.BACK)
+                    ChangeScreenState(--m_State);
+                break;
+            case STATE.TUTORIAL:
+                // @TODO: TEMP SOLUTION
+                if (input == INPUT_TYPE.CONFIRM)
+                    ChangeScreenState(++m_State);
+                else if (input == INPUT_TYPE.BACK)
+                    ChangeScreenState(--m_State);
+                break;
+            case STATE.CHARACTER_SELECT:
+                if (input == INPUT_TYPE.CONFIRM)
+                {
+                    m_State = STATE.START;
+                    m_StartOverlay.RemoveFromClassList("transparent");
+                    ChangeScreenState(m_State);
+                }
+                break;
+            default:
+                Logger.Log("Unknown State Achieved. We should never be here.",
+                    Logger.SEVERITY_LEVEL.WARNING,
+                    Logger.LOGGER_OPTIONS.VERBOSE,
+                    MethodBase.GetCurrentMethod());
+                break;
+        }
+    }
+
+    public void HandleCardSwipe()
+    {
+        m_StartOverlay.AddToClassList("transparent");
+        m_State = STATE.MODE_SELECT; 
+        ChangeScreenState(m_State);
+    }
+
+    void ChangeScreenState(STATE state)
+    {
+        m_Container.Clear();
+
+        if (state == STATE.START) return;
+
+        if (m_TemplateContainers.TryGetValue(state, out TemplateContainer template))
+        {
+            m_Container.Add(template);
+        }
+        else
+            Logger.Log("Could not find STATE matching type \"" + state.ToString() + "\"!",
+                    Logger.SEVERITY_LEVEL.ERROR,
+                    Logger.LOGGER_OPTIONS.VERBOSE,
+                    MethodBase.GetCurrentMethod());
+    }
+
+    void InitTemplateContainers()
+    {
+        for (int i = 0; i < m_VisualTreeAssetPaths.Count; i++)
+        {
+            VisualTreeAsset va = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(m_VisualTreeAssetPaths[i]);
+            if (va != null)
+            {
+                m_TemplateContainers.Add(m_ScreenStateOrder[i < m_ScreenStateOrder.Count ? i : 0], va.CloneTree());
+            }
+            else
+                Logger.Log("Could not find item at path \"" + m_VisualTreeAssetPaths[i] + "\"!",
+                    Logger.SEVERITY_LEVEL.ERROR,
+                    Logger.LOGGER_OPTIONS.VERBOSE,
+                    MethodBase.GetCurrentMethod());
+        }
+    }
+}
