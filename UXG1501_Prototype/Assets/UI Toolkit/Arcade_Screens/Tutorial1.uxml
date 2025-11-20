@@ -2,7 +2,11 @@
     <Style src="project://database/Assets/UI%20Toolkit/Arcade_Style.uss?fileID=7433441132597879392&amp;guid=3bcfbad580fb74e4e950b14be37bdb69&amp;type=3#Arcade_Style" />
     <ui:VisualElement name="GroupA" class="misc-groupa" style="background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/misc/tutorial.png?fileID=2800000&amp;guid=a79d731d6dba143439ebbe47560c6f2c&amp;type=3#tutorial&quot;);" />
     <ui:VisualElement name="TemplateContainer" class="container-template-main">
-        <ui:Label text="60" name="label_countdown" class="label-countdown" />
+        <ui:Label text="60" name="label_countdown" class="label-countdown">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="m_TimeLeft" data-source="project://database/Assets/UI%20Toolkit/Arcade_Screens/Timer.asset?fileID=11400000&amp;guid=9ded7b75273cb754ba5a4c9d5b83ed5a&amp;type=2#Timer" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
         <ui:VisualElement name="TemplateContent" style="flex-grow: 1; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/TutorialBasic.renderTexture?fileID=8400000&amp;guid=15bd04282af211c439b70d7b4a82b59a&amp;type=2#TutorialBasic&quot;); background-size: 75% 100%;" />
         <ui:VisualElement name="Footer" class="footer" style="height: 11%;">
             <ui:VisualElement name="Controls" class="footer-controls">

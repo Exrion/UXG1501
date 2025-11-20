@@ -2,9 +2,13 @@
     <Style src="project://database/Assets/UI%20Toolkit/Arcade_Style.uss?fileID=7433441132597879392&amp;guid=3bcfbad580fb74e4e950b14be37bdb69&amp;type=3#Arcade_Style" />
     <ui:VisualElement name="GroupA" class="misc-groupa" />
     <ui:VisualElement name="TemplateContainer" class="container-template-main">
-        <ui:Label text="15" name="label_countdown" class="label-countdown" />
+        <ui:Label text="15" name="label_countdown" data-source="project://database/Assets/UI%20Toolkit/Arcade_Screens/Timer.asset?fileID=11400000&amp;guid=9ded7b75273cb754ba5a4c9d5b83ed5a&amp;type=2#Timer" data-source-path="m_TimeLeft" class="label-countdown">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="m_TimeLeft" data-source="project://database/Assets/UI%20Toolkit/Arcade_Screens/Timer.asset?fileID=11400000&amp;guid=9ded7b75273cb754ba5a4c9d5b83ed5a&amp;type=2#Timer" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
         <ui:VisualElement name="TemplateContent" style="flex-grow: 1; width: 100%; height: 100%; justify-content: center; flex-direction: row;">
-            <ui:VisualElement name="Temp" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/mode-select-temp.png?fileID=2800000&amp;guid=bfd49f335c3345c43aac45724f7d3fa6&amp;type=3#mode-select-temp&quot;); -unity-background-scale-mode: stretch-to-fill; display: none;" />
+            <ui:VisualElement name="Temp" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/com.DigiPen/src/art/Arcade_Art/mode-select-temp.png?fileID=2800000&amp;guid=bfd49f335c3345c43aac45724f7d3fa6&amp;type=3#mode-select-temp&apos;); -unity-background-scale-mode: stretch-to-fill; display: none;" />
             <ui:VisualElement name="ArrowLeft" style="flex-grow: 1; height: 100%; width: 4%; justify-content: center; align-items: center;">
                 <ui:VisualElement name="arrow-left" style="flex-grow: 0; width: 30px; height: 64px; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/misc/carousellArrow.png?fileID=2800000&amp;guid=63736721f8fb6c445a191a89c40403cf&amp;type=3#carousellArrow&quot;); -unity-slice-scale: 1px; background-size: 100% 100%; scale: -1 1;" />
             </ui:VisualElement>
@@ -58,7 +62,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="Footer" class="footer">
             <ui:VisualElement name="SubtitleBar" class="footer-subtitle">
-                <ui:Label text="subtitle" name="locale_subtitle" class="locale" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 1; height: 22px; position: absolute; top: 10px; left: 39px; color: rgb(224, 224, 224); -unity-font-definition: url(&quot;project://database/Assets/com.DigiPen/lib/fonts/BAHNSCHRIFT.TTF?fileID=12800000&amp;guid=6e699dfe084aef64d9fdb3dc61367a3b&amp;type=3#BAHNSCHRIFT&quot;); -unity-font-style: normal; font-size: 16px; -unity-text-align: middle-left; width: 1256px;" />
+                <ui:Label text="subtitle" name="locale_subtitle" class="locale" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 1; height: 22px; position: absolute; top: 10px; left: auto; color: rgb(224, 224, 224); -unity-font-definition: url(&quot;project://database/Assets/com.DigiPen/lib/fonts/BAHNSCHRIFT.TTF?fileID=12800000&amp;guid=6e699dfe084aef64d9fdb3dc61367a3b&amp;type=3#BAHNSCHRIFT&quot;); -unity-font-style: normal; font-size: 16px; -unity-text-align: middle-center; width: 100%;" />
             </ui:VisualElement>
             <ui:VisualElement name="DescriptionBar" class="footer-description">
                 <ui:Label text="description" name="locale_description" class="locale" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 1; height: 22px; position: absolute; top: 10px; left: 39px; color: rgb(224, 224, 224); -unity-font-definition: url(&quot;project://database/Assets/com.DigiPen/lib/fonts/BAHNSCHRIFT.TTF?fileID=12800000&amp;guid=6e699dfe084aef64d9fdb3dc61367a3b&amp;type=3#BAHNSCHRIFT&quot;); -unity-font-style: normal; font-size: 16px; -unity-text-align: middle-left; width: 1256px;" />

@@ -47,13 +47,18 @@ public class Arcade_Script : MonoBehaviour
     Dictionary<STATE, TemplateContainer> m_TemplateContainers = new();
     STATE m_State = STATE.START;
 
+    [SerializeField]
+    Timer_SO m_TimerSO;
+    [SerializeField]
+    UDictionary<STATE, float> m_StateTimerMaxDict = new();
+
     // Mode Select
     int m_ModeSelect_Count = 0;
 
     // Pick Side
     bool m_PickSide_Left = true;
 
-    void Start()
+    private void Start()
     {
         m_UIDocument = GetComponent<UIDocument>();
         m_RootVisualElement = m_UIDocument.rootVisualElement;
@@ -61,6 +66,11 @@ public class Arcade_Script : MonoBehaviour
         m_StartOverlay = m_RootVisualElement.Q("Screen_Start");
 
         InitTemplateContainers();
+    }
+
+    private void Update()
+    {
+        UpdateTimer();
     }
 
     public void HandleInput(INPUT_TYPE input)
@@ -128,7 +138,16 @@ public class Arcade_Script : MonoBehaviour
         }
     }
 
-    void Update_ModeSelect()
+    private void UpdateTimer()
+    {
+        if (m_TimerSO.m_StateTimerMax == -1f) return;
+        m_TimerSO.m_StateTimer += Time.deltaTime;
+        m_TimerSO.m_TimeLeft = Mathf.RoundToInt(m_TimerSO.m_StateTimerMax - m_TimerSO.m_StateTimer);
+        if (m_TimerSO.m_TimeLeft <= 0)
+            ChangeScreenState(++m_State);
+    }
+
+    private void Update_ModeSelect()
     {
         switch (m_ModeSelect_Count)
         {
@@ -290,7 +309,7 @@ public class Arcade_Script : MonoBehaviour
         }
     }
 
-    void Update_PickSide()
+    private void Update_PickSide()
     {
         if (m_PickSide_Left)
         {
@@ -326,11 +345,17 @@ public class Arcade_Script : MonoBehaviour
         UpdateLocale();
     }
 
-    void ChangeScreenState(STATE state)
+    private void ChangeScreenState(STATE state)
     {
         m_Container.Clear();
 
         if (state == STATE.START) return;
+
+        if (m_StateTimerMaxDict.TryGetValue(state, out float timerMax))
+            m_TimerSO.m_StateTimerMax = timerMax;
+        else
+            m_TimerSO.m_StateTimerMax = -1f;
+        m_TimerSO.m_StateTimer = 0f;
 
         if (m_TemplateContainers.TryGetValue(state, out TemplateContainer template))
         {
@@ -340,13 +365,13 @@ public class Arcade_Script : MonoBehaviour
             UpdateLocale();
         }
         else
-            Logger.Log("Could not find STATE matching type \"" + state.ToString() + "\"!",
+            Logger.Log("Could not find STATE matching type \"" + state.ToString() + "\" for Containers!",
                     Logger.SEVERITY_LEVEL.ERROR,
                     Logger.LOGGER_OPTIONS.VERBOSE,
                     MethodBase.GetCurrentMethod());
     }
 
-    void UpdateLocale()
+    private void UpdateLocale()
     {
         List<VisualElement> localeLabels = m_Container.Query(className: "locale").ToList();
         for (int i = 0; i < localeLabels.Count; i++)
@@ -360,11 +385,11 @@ public class Arcade_Script : MonoBehaviour
         }
     }
 
-    void InitTemplateContainers()
+    private void InitTemplateContainers()
     {
         for (int i = 0; i < m_VisualTreeAssetPaths.Count; i++)
         {
-            VisualTreeAsset va = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(m_VisualTreeAssetPaths[i]);
+            VisualTreeAsset va = Resources.Load<VisualTreeAsset>(m_VisualTreeAssetPaths[i]);
             if (va != null)
             {
                 m_TemplateContainers.Add(m_ScreenStateOrder[i < m_ScreenStateOrder.Count ? i : 0], va.CloneTree());

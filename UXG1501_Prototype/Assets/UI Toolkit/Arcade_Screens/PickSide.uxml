@@ -2,7 +2,11 @@
     <Style src="project://database/Assets/UI%20Toolkit/Arcade_Style.uss?fileID=7433441132597879392&amp;guid=3bcfbad580fb74e4e950b14be37bdb69&amp;type=3#Arcade_Style" />
     <ui:VisualElement name="GroupA" class="misc-groupa" />
     <ui:VisualElement name="TemplateContainer" class="container-template-main">
-        <ui:Label text="15" name="label_countdown" class="label-countdown" />
+        <ui:Label text="15" name="label_countdown" class="label-countdown">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="m_TimeLeft" data-source="project://database/Assets/UI%20Toolkit/Arcade_Screens/Timer.asset?fileID=11400000&amp;guid=9ded7b75273cb754ba5a4c9d5b83ed5a&amp;type=2#Timer" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
         <ui:VisualElement name="TemplateContent" style="flex-grow: 1; width: 100%; height: 100%; justify-content: center; align-items: center; flex-direction: row; padding-right: 5%; padding-left: 5%;">
             <ui:VisualElement name="image-base-left" class="fighter-left">
                 <ui:VisualElement name="image-left" class="fighter-image-left" />

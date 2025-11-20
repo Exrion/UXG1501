@@ -133,7 +133,7 @@
 
 .fighter-image-right {
     flex-grow: 1;
-    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/buttons/fighter_right-disabled.png?fileID=2800000&guid=dc41ab51a40cff44dade4be914335b88&type=3#fighter_right-disabled");
+    background-image: url("project://database/Assets/com.DigiPen/src/art/Arcade_Art/buttons/fighter_right.png?fileID=2800000&guid=1911e0546264d524b8bf7bb5cc05b497&type=3#fighter_right");
     -unity-background-image-tint-color: rgb(255, 255, 255);
     transition-property: -unity-background-image-tint-color;
     transition-duration: 0.3s;
