@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class ChairAdjustment : MonoBehaviour
 {
-    public bool chairisdown = false;
+    public bool chairisdown = true;
     public bool chairismovedforward = true;
     Animator animator;
+    public GameObject chairSeat;
 
     private void Start()
     {
@@ -15,7 +16,7 @@ public class ChairAdjustment : MonoBehaviour
         if (!chairisdown)
         {
             chairisdown = true;
-            animator.Play("ChairMoveDown");
+            chairSeat.GetComponent<Animator>().Play("ChairMoveDown");
         }
     }
 
@@ -23,7 +24,7 @@ public class ChairAdjustment : MonoBehaviour
     {
         if (chairisdown)
         {
-            animator.Play("ChairMoveUp");
+            chairSeat.GetComponent<Animator>().Play("ChairMoveUp");
             chairisdown = false;
         }
     }
