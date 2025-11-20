@@ -40,7 +40,7 @@ public class Arcade_Script : MonoBehaviour
     VisualElement m_StartOverlay;
 
     [SerializeField]
-    List<string> m_VisualTreeAssetPaths = new();
+    List<VisualTreeAsset> m_VisualTreeAssets = new();
     [SerializeField]
     List<STATE> m_ScreenStateOrder = new List<STATE>();
 
@@ -387,15 +387,14 @@ public class Arcade_Script : MonoBehaviour
 
     private void InitTemplateContainers()
     {
-        for (int i = 0; i < m_VisualTreeAssetPaths.Count; i++)
+        for (int i = 0; i < m_VisualTreeAssets.Count; i++)
         {
-            VisualTreeAsset va = Resources.Load<VisualTreeAsset>(m_VisualTreeAssetPaths[i]);
-            if (va != null)
+            if (m_VisualTreeAssets[i] != null)
             {
-                m_TemplateContainers.Add(m_ScreenStateOrder[i < m_ScreenStateOrder.Count ? i : 0], va.CloneTree());
+                m_TemplateContainers.Add(m_ScreenStateOrder[i < m_ScreenStateOrder.Count ? i : 0], m_VisualTreeAssets[i].CloneTree());
             }
             else
-                Logger.Log("Could not find item at path \"" + m_VisualTreeAssetPaths[i] + "\"!",
+                Logger.Log("Could not find Visual Tree Asset \"" + m_VisualTreeAssets[i] + "\"!",
                     Logger.SEVERITY_LEVEL.ERROR,
                     Logger.LOGGER_OPTIONS.VERBOSE,
                     MethodBase.GetCurrentMethod());
