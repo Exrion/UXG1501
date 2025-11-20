@@ -40,30 +40,28 @@ public class InteractableController : MonoBehaviour
 
     private IEnumerator OutlineObject()
     {
-        if (!GameManager.Instance.m_ReadySceneSwitch)
+        int count = 0;
+        RaycastHit[] raycastHits = Physics.RaycastAll(m_Camera.transform.position, m_Camera.transform.forward, m_InteractionDistance);
+        foreach (RaycastHit hit in raycastHits)
         {
-            int count = 0;
-            RaycastHit[] raycastHits = Physics.RaycastAll(m_Camera.transform.position, m_Camera.transform.forward, m_InteractionDistance);
-            foreach (RaycastHit hit in raycastHits)
+            if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
-                if (hit.collider.TryGetComponent(out IInteractable interactable))
-                {
-                    count++;
-                    m_CurrentOutline = interactable;
-                    break;
-                }
-            }
-            if (count != 0)
-                m_CurrentOutline.HandleOutline(true);
-            else
-            {
-                if (m_CurrentOutline != null)
-                {
-                    m_CurrentOutline.HandleOutline(false);
-                    m_CurrentOutline = null;
-                }
+                count++;
+                m_CurrentOutline = interactable;
+                break;
             }
         }
+        if (count != 0)
+            m_CurrentOutline.HandleOutline(true);
+        else
+        {
+            if (m_CurrentOutline != null)
+            {
+                m_CurrentOutline.HandleOutline(false);
+                m_CurrentOutline = null;
+            }
+        }
+
         return new WaitForSecondsRealtime(m_OutlineUpdateInterval);
     }
 
