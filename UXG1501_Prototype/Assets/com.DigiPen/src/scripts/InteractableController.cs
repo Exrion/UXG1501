@@ -28,7 +28,14 @@ public class InteractableController : MonoBehaviour
     private void Update()
     {
         CheckInput();
+        UpdateJoystick();
         StartCoroutine(OutlineObject());
+    }
+
+    private void UpdateJoystick()
+    {
+        if (m_CurrentOutline != null && m_CurrentOutline.GetType() == typeof(Interactable_Joystick))
+            ((Interactable_Joystick)m_CurrentOutline).ListenInput();
     }
 
     private IEnumerator OutlineObject()

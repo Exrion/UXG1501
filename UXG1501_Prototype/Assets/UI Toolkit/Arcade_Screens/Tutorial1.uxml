@@ -3,7 +3,7 @@
     <ui:VisualElement name="GroupA" class="misc-groupa" style="background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/misc/tutorial.png?fileID=2800000&amp;guid=a79d731d6dba143439ebbe47560c6f2c&amp;type=3#tutorial&quot;);" />
     <ui:VisualElement name="TemplateContainer" class="container-template-main">
         <ui:Label text="60" name="label_countdown" class="label-countdown" />
-        <ui:VisualElement name="TemplateContent" style="flex-grow: 1; width: 100%; height: 100%;" />
+        <ui:VisualElement name="TemplateContent" style="flex-grow: 1; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/com.DigiPen/src/art/Arcade_Art/TutorialBasic.renderTexture?fileID=8400000&amp;guid=15bd04282af211c439b70d7b4a82b59a&amp;type=2#TutorialBasic&quot;); background-size: 75% 100%;" />
         <ui:VisualElement name="Footer" class="footer" style="height: 11%;">
             <ui:VisualElement name="Controls" class="footer-controls">
                 <ui:VisualElement name="ControlContainer" class="footer-controls-container" style="align-content: center; align-self: center; flex-grow: 0; width: 67%;">

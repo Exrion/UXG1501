@@ -44,12 +44,12 @@ public abstract class IInteractable : MonoBehaviour
         m_ChildOrigin = m_OutlineScript.transform.position;
 
         if (m_InteractableScript == null)
-            Logger.Log("Interactable_Script not found in child of gameobject!",
+            Logger.Log("Interactable_Script not found in child of " + gameObject.name,
                 Logger.SEVERITY_LEVEL.ERROR,
                 Logger.LOGGER_OPTIONS.VERBOSE,
                 MethodBase.GetCurrentMethod());
         if (m_InteractableDocument == null)
-            Logger.Log("UIDocument not found in child of gameobject!",
+            Logger.Log("UIDocument not found in child of " + gameObject.name,
                 Logger.SEVERITY_LEVEL.ERROR,
                 Logger.LOGGER_OPTIONS.VERBOSE,
                 MethodBase.GetCurrentMethod());
@@ -101,7 +101,8 @@ public abstract class IInteractable : MonoBehaviour
 
     public virtual void HandleOutline(bool state)
     {
-        m_OutlineScript.enabled = state;
+        if (m_OutlineScript)
+            m_OutlineScript.enabled = state;
     }
 
     public virtual void HandleInteractionStarted(float inputHoldTime)
