@@ -2,21 +2,25 @@ VisualElement {
 }
 
 .ActionItem {
-    flex-grow: 1;
+    flex-grow: 0;
     left: initial;
     flex-direction: row;
     height: auto;
     align-items: center;
     -unity-font-definition: url("project://database/Assets/com.DigiPen/lib/fonts/CuteNotebookPersonalUse-7OAEV.ttf?fileID=12800000&guid=6a259078ba99e74428f0121c0e0f7e6e&type=3#CuteNotebookPersonalUse-7OAEV");
+    width: 100%;
+    justify-content: flex-start;
 }
 
 .ActionItem_Image {
-    flex-grow: 1;
+    flex-grow: 0;
     width: 30px;
     height: 30px;
     top: auto;
     bottom: auto;
     -unity-font-definition: url("project://database/Assets/com.DigiPen/lib/fonts/CuteNotebookPersonalUse-7OAEV.ttf?fileID=12800000&guid=6a259078ba99e74428f0121c0e0f7e6e&type=3#CuteNotebookPersonalUse-7OAEV");
+    margin-right: 10px;
+    -unity-background-scale-mode: scale-to-fit;
 }
 
 .ActionItem_Label {
@@ -26,4 +30,8 @@ VisualElement {
     font-size: 18px;
     letter-spacing: 8px;
     color: rgb(255, 255, 255);
+}
+
+.hide {
+    display: none;
 }

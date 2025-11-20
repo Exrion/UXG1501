@@ -2533,6 +2533,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 9ded7b75273cb754ba5a4c9d5b83ed5a, type: 2}
     - target: {fileID: 5985031196317258632, guid: 3f33134d29aade14a980da0a92cbaa7a, type: 3}
+      propertyPath: m_PlayerHUD
+      value: 
+      objectReference: {fileID: 280025651}
+    - target: {fileID: 5985031196317258632, guid: 3f33134d29aade14a980da0a92cbaa7a, type: 3}
+      propertyPath: m_FirstPersonController
+      value: 
+      objectReference: {fileID: 280025650}
+    - target: {fileID: 5985031196317258632, guid: 3f33134d29aade14a980da0a92cbaa7a, type: 3}
       propertyPath: m_VisualTreeAssets.Array.size
       value: 5
       objectReference: {fileID: 0}

@@ -67,7 +67,7 @@ public class InteractableController : MonoBehaviour
 
     private void CheckInput()
     {
-        if (m_InteractAction != null && m_InteractAction.phase == InputActionPhase.Started && m_CurrentInteractable == null)
+        if (m_InteractAction != null && (m_InteractAction.phase == InputActionPhase.Started) && m_CurrentInteractable == null)
             CheckInteract();
         else if (m_InteractAction != null && m_InteractAction.phase == InputActionPhase.Performed)
         {

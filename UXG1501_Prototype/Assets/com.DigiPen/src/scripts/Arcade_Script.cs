@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public enum INPUT_TYPE
@@ -33,6 +35,21 @@ public class Arcade_Script : MonoBehaviour
     UIDocument m_UIDocument;
     VisualElement m_RootVisualElement;
     VisualElement m_Container;
+
+    InputAction m_GamepadMode;
+    InputAction m_GamepadSkip;
+    InputAction m_GamepadBack;
+    InputAction m_GamepadConfirm;
+    InputAction m_GamepadStart;
+    InputAction m_GamepadLeft;
+    InputAction m_GamepadRight;
+
+    [SerializeField]
+    FirstPersonController m_FirstPersonController;
+    [SerializeField]
+    UIDocument m_PlayerHUD;
+    bool m_GamepadModeEnabled;
+    Coroutine m_Vibrator;
 
     bool m_LocaleEnglish = true;
     public Locale_SO m_Locales;
@@ -65,12 +82,76 @@ public class Arcade_Script : MonoBehaviour
         m_Container = m_RootVisualElement.Q("Container");
         m_StartOverlay = m_RootVisualElement.Q("Screen_Start");
 
+        m_GamepadMode = InputSystem.actions.FindAction("GamepadMode");
+        m_GamepadSkip = InputSystem.actions.FindAction("GamepadSkip");
+        m_GamepadBack = InputSystem.actions.FindAction("GamepadBack");
+        m_GamepadConfirm = InputSystem.actions.FindAction("GamepadConfirm");
+        m_GamepadStart = InputSystem.actions.FindAction("GamepadStart");
+        m_GamepadLeft = InputSystem.actions.FindAction("GamepadLeft");
+        m_GamepadRight = InputSystem.actions.FindAction("GamepadRight");
+
         InitTemplateContainers();
     }
 
     private void Update()
     {
         UpdateTimer();
+        GetControllerMode();
+        if (m_GamepadModeEnabled)
+            HandleControllerInput();
+    }
+
+    private IEnumerator VibrateController(float duration)
+    {
+        Gamepad gamepad = Gamepad.current;
+        gamepad.SetMotorSpeeds(0.123f, 0.234f);
+        yield return new WaitForSeconds(duration);
+        gamepad.SetMotorSpeeds(0f, 0f);
+    }
+
+    private void GetControllerMode()
+    {
+        if (m_GamepadModeEnabled)
+        {
+            if (m_GamepadMode.triggered)
+            {
+                m_GamepadModeEnabled = false;
+                m_FirstPersonController.playerCanMove = true;
+                m_PlayerHUD.rootVisualElement.Q("mode-keyboard").RemoveFromClassList("hide");
+                m_PlayerHUD.rootVisualElement.Q("mode-gamepad").AddToClassList("hide");
+                StartCoroutine(VibrateController(0.2f));
+            }
+        }
+        else
+        {
+            if (m_GamepadMode.triggered)
+            {
+                m_GamepadModeEnabled = true;
+                m_FirstPersonController.playerCanMove = false;
+                m_PlayerHUD.rootVisualElement.Q("mode-keyboard").AddToClassList("hide");
+                m_PlayerHUD.rootVisualElement.Q("mode-gamepad").RemoveFromClassList("hide");
+                StartCoroutine(VibrateController(0.2f));
+            }
+        }
+    }
+
+    private void HandleControllerInput()
+    {
+        // Joystick X
+        if (m_GamepadRight.triggered)
+            HandleInput(INPUT_TYPE.RIGHT);
+        if (m_GamepadLeft.triggered)
+            HandleInput(INPUT_TYPE.LEFT);
+
+        // Buttons
+        if (m_GamepadBack.triggered)
+            HandleInput(INPUT_TYPE.BACK);
+        if (m_GamepadConfirm.triggered)
+            HandleInput(INPUT_TYPE.CONFIRM);
+        if (m_GamepadSkip.triggered)
+            HandleInput(INPUT_TYPE.SKIP);
+        if (m_GamepadStart.triggered)
+            HandleCardSwipe();
     }
 
     public void HandleInput(INPUT_TYPE input)
