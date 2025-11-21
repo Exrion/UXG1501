@@ -45,11 +45,8 @@ public class Arcade_Script : MonoBehaviour
     InputAction m_GamepadRight;
 
     [SerializeField]
-    FirstPersonController m_FirstPersonController;
-    [SerializeField]
     UIDocument m_PlayerHUD;
     bool m_GamepadModeEnabled;
-    Coroutine m_Vibrator;
 
     bool m_LocaleEnglish = true;
     public Locale_SO m_Locales;
@@ -116,7 +113,6 @@ public class Arcade_Script : MonoBehaviour
             if (m_GamepadMode.triggered)
             {
                 m_GamepadModeEnabled = false;
-                m_FirstPersonController.playerCanMove = true;
                 m_PlayerHUD.rootVisualElement.Q("mode-keyboard").RemoveFromClassList("hide");
                 m_PlayerHUD.rootVisualElement.Q("mode-gamepad").AddToClassList("hide");
                 StartCoroutine(VibrateController(0.2f));
@@ -127,7 +123,6 @@ public class Arcade_Script : MonoBehaviour
             if (m_GamepadMode.triggered)
             {
                 m_GamepadModeEnabled = true;
-                m_FirstPersonController.playerCanMove = false;
                 m_PlayerHUD.rootVisualElement.Q("mode-keyboard").AddToClassList("hide");
                 m_PlayerHUD.rootVisualElement.Q("mode-gamepad").RemoveFromClassList("hide");
                 StartCoroutine(VibrateController(0.2f));
